@@ -1,5 +1,6 @@
 package com.yoatzin.app.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -74,6 +75,15 @@ public class ProductsServiceImpl implements ProductsService {
 		Optional<Products> optionalProduct = productsRepository.findByName(name);
         if (optionalProduct.isEmpty()) {
             throw new IllegalStateException("Product does not exist with name " + name);
+        }
+        return optionalProduct.get();
+	}
+
+	@Override
+	public Products getProductsByPrice(BigDecimal price) {
+		Optional<Products> optionalProduct = productsRepository.findByPrice(price);
+        if (optionalProduct.isEmpty()) {
+            throw new IllegalStateException("Product does not exist with price " + price);
         }
         return optionalProduct.get();
 	}

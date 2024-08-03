@@ -5,11 +5,20 @@ public class ProductsDto {
 	private Long serialNumber;
 	private String name;
 	private String category;
+	private String price;
 	private String origin;
 	private String description;
 	private int stock;
 	
 	public ProductsDto() {}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
 	public Long getSerialNumber() {
 		return serialNumber;

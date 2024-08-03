@@ -11,7 +11,7 @@ public class ProductsUpdater {
             throw new IllegalArgumentException("Product data cannot be null");
         }
 		
-		existingProduct.setName(newProductData.getImage());
+		existingProduct.setName(newProductData.getName());
 		existingProduct.setCategory(newProductData.getCategory());
 		existingProduct.setPrice(newProductData.getPrice());
 		existingProduct.setImage(newProductData.getImage());

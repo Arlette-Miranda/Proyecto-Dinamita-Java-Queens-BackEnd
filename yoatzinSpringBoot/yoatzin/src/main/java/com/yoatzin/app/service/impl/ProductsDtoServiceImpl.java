@@ -1,5 +1,7 @@
 package com.yoatzin.app.service.impl;
 
+import java.math.BigDecimal;
+
 import com.yoatzin.app.dto.ProductsDto;
 import com.yoatzin.app.model.Products;
 import com.yoatzin.app.service.ProductsDtoService;
@@ -47,6 +49,12 @@ public class ProductsDtoServiceImpl implements ProductsDtoService {
 	}
 
 	@Override
+	public ProductsDto getProductsByOrigin(String origin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public ProductsDto getProductsByStock(int stock) {
 		// TODO Auto-generated method stub
 		return null;
@@ -65,11 +73,11 @@ public class ProductsDtoServiceImpl implements ProductsDtoService {
 	}
 
 	@Override
-	public ProductsDto getProductsByOrigin(String origin) {
+	public ProductsDto getProductsByPrice(BigDecimal price) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	
 
 }
