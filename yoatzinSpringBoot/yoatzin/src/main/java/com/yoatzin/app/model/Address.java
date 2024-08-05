@@ -1,9 +1,14 @@
 package com.yoatzin.app.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -14,9 +19,13 @@ import jakarta.persistence.Table;
 public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_address;
+	private Long id_address; 
 	
-	private Long fk_id_user;
+	//Se crea lleve foranea
+	@ManyToOne
+	@JoinColumn(name = "fk_id_user")
+	@JsonIgnoreProperties({"name","lastName", "phone","email","password"})
+	private User user;
 	
 	@Column(name="state", length=20, nullable=false)
 	private String state;
@@ -31,11 +40,10 @@ public class Address {
 	@Column(name="reference", length=45, nullable=true)
 	private String reference;
 	
-	public Address() {
-		
-	}
+	public Address() {}
 
-	public Address(String state, String city, String colony, String street, String zipcode, String reference) {
+	//Se agrega User user por Fk en atributos
+	public Address(String state, String city, String colony, String street, String zipcode, String reference, User user) {
 		super();
 		this.state = state;
 		this.city = city;
@@ -43,8 +51,9 @@ public class Address {
 		this.street = street;
 		this.zipcode = zipcode;
 		this.reference = reference;
+		this.user = user; // Se agrega por llave foranea
 	}
-
+	
 	public Long getId_address() {
 		return id_address;
 	}
@@ -53,13 +62,6 @@ public class Address {
 		this.id_address = id_address;
 	}
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
-
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
 
 	public String getState() {
 		return state;
@@ -108,6 +110,15 @@ public class Address {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+	
+	// Se agregan Get y Set de Fk
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
@@ -115,7 +126,7 @@ public class Address {
 		builder.append("Address [id_address=");
 		builder.append(id_address);
 		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
+		builder.append(user); // se cambia a user por Fk
 		builder.append(", state=");
 		builder.append(state);
 		builder.append(", city=");
