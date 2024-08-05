@@ -1,7 +1,10 @@
 package com.yoatzin.app.service;
 
+import org.springframework.stereotype.Service;
+
 import com.yoatzin.app.model.Comment;
 
+@Service
 public interface CommentService {
     Comment createComment(Comment comment); // Método para crear un comentario.
 

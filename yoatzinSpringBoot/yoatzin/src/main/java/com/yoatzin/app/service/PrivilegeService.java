@@ -1,7 +1,9 @@
 package com.yoatzin.app.service;
+import org.springframework.stereotype.Service;
+
 import com.yoatzin.app.model.Privilege;
 
-//@Service
+@Service
 public interface PrivilegeService {
 	//public Privilege createPrivileges(Privilege privileges);
 	Privilege createPrivileges(Privilege privilege);
