@@ -1,11 +1,15 @@
 package com.yoatzin.app.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,29 +20,33 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long fk_id_user;
+	@ManyToOne
+	@JoinColumn(name= "fk_id_privilege")
+	@JsonIgnoreProperties({"description"})
+	private Privilege privilege;
 	
-	@Column(name="name", length=100, nullable=false)
+	@Column(name="name", length=45, nullable=false)
 	private String name;
-	@Column(name="lastname", length=100, nullable=false)
-	private String last_name;
-	@Column(name="phone", nullable=false)
-	private int phone;
-	@Column(name="email", length=50, nullable=false, unique=true)
+	@Column(name="lastName", length=45, nullable=false)
+	private String lastName;
+	@Column(name="phone", length=10, nullable=false)
+	private String phone;
+	@Column(name="email", length=45, nullable=false, unique=true)
 	private String email;
-	@Column(name="password", length=100, nullable=false)
+	@Column(name="password", length=20, nullable=false)
 	private String password;
-	@Column(name="active", nullable=true)
+	@Column(name="active", nullable=false)
 	private boolean active;
+	
 	
 	public User() {
 		
 	}
 
-	public User(String name, String last_name, int phone, String email, String password, boolean active) {
+	public User(String name, String lastName, String phone, String email, String password, boolean active) {
 		super();
 		this.name = name;
-		this.last_name = last_name;
+		this.lastName = lastName;
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
@@ -53,14 +61,6 @@ public class User {
 		this.id = id;
 	}
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
-
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -69,19 +69,19 @@ public class User {
 		this.name = name;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLast_name(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -114,12 +114,10 @@ public class User {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=");
 		builder.append(id);
-		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
 		builder.append(", name=");
 		builder.append(name);
-		builder.append(", last_name=");
-		builder.append(last_name);
+		builder.append(", lastName=");
+		builder.append(lastName);
 		builder.append(", phone=");
 		builder.append(phone);
 		builder.append(", email=");

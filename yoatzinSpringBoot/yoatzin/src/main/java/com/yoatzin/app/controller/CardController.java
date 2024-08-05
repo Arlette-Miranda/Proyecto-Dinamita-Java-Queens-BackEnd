@@ -4,13 +4,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.yoatzin.app.model.Card;
-import com.yoatzin.app.model.User;
 import com.yoatzin.app.service.CardService;
-import com.yoatzin.app.service.UserService;
 
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("api/v1/cards")
 @CrossOrigin(origins = "*")
 public class CardController {
 	

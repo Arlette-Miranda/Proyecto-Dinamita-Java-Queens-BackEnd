@@ -9,7 +9,7 @@ import com.yoatzin.app.model.Comment;
 import com.yoatzin.app.service.CommentService;
 
 @RestController // Indica que esta clase es un controlador REST.
-@RequestMapping("/comments") // Mapea las solicitudes HTTP a /comments.
+@RequestMapping("api/v1/comments") // Mapea las solicitudes HTTP a /comments.
 public class CommentController {
 
     @Autowired // Inyección de dependencias de Spring.

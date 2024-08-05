@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,7 +18,9 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_product;
 	
-	private Long fk_id_size;
+	@ManyToOne
+	@JoinColumn(name= "fk_id_size")
+	private Size size;
 	
 	@Column(name="name", length=45, nullable=false)
 	private String name;
@@ -55,14 +59,6 @@ public class Product {
 
 	public void setId_product(Long id_product) {
 		this.id_product = id_product;
-	}
-
-	public Long getFk_id_size() {
-		return fk_id_size;
-	}
-
-	public void setFk_id_size(Long fk_id_size) {
-		this.fk_id_size = fk_id_size;
 	}
 
 	public String getName() {
@@ -126,8 +122,6 @@ public class Product {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Product [id_product=");
 		builder.append(id_product);
-		builder.append(", fk_id_size=");
-		builder.append(fk_id_size);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append(", category=");

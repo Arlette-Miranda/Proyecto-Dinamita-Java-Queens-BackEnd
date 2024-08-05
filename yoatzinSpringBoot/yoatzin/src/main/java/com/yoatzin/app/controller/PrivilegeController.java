@@ -4,19 +4,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.yoatzin.app.model.Privilege;
-import com.yoatzin.app.model.User;
 import com.yoatzin.app.service.PrivilegeService;
-import com.yoatzin.app.service.UserService;
 
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("api/v1/privileges")
 @CrossOrigin(origins = "*")
 public class PrivilegeController {
 	
 	PrivilegeService privilegeService;
 
-	public PrivilegeController(PrivilegeService userService) {
+	public PrivilegeController(PrivilegeService privilegeService) {
 		this.privilegeService = privilegeService;
 	}
 	

@@ -9,7 +9,7 @@ import com.yoatzin.app.model.Order;
 import com.yoatzin.app.service.OrderService;
 
 @RestController // Indica que esta clase es un controlador REST.
-@RequestMapping("/orders") // Mapea las solicitudes HTTP a /orders.
+@RequestMapping("api/v1/orders") // Mapea las solicitudes HTTP a /orders.
 public class OrderController {
 
     @Autowired // Inyección de dependencias de Spring.
