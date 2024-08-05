@@ -1,12 +1,12 @@
 package com.yoatzin.app.util;
 
-import com.yoatzin.app.model.Products;
+import com.yoatzin.app.model.Product;
 
-public class ProductsUpdater {
+public class ProductUpdater {
 	
-	private ProductsUpdater() {}
+	private ProductUpdater() {}
 
-	public static Products updateProducts(Products existingProduct, Products newProductData) {
+	public static Product updateProducts(Product existingProduct, Product newProductData) {
 		if (existingProduct == null || newProductData == null) {
             throw new IllegalArgumentException("Product data cannot be null");
         }

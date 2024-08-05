@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name ="products")
 
-public class Products {
+public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_product;
@@ -33,11 +33,11 @@ public class Products {
 	@Column(name="description", columnDefinition = "LONGTEXT", nullable=true)
 	private String description;
 	
-	public Products() {
+	public Product() {
 		
 	}
 
-	public Products(String name, String category, BigDecimal price, String image, String origin, int stock,
+	public Product(String name, String category, BigDecimal price, String image, String origin, int stock,
 			String description) {
 		super();
 		this.name = name;
@@ -124,7 +124,7 @@ public class Products {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Products [id_product=");
+		builder.append("Product [id_product=");
 		builder.append(id_product);
 		builder.append(", fk_id_size=");
 		builder.append(fk_id_size);

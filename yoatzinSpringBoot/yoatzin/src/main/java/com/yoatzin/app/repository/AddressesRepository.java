@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.yoatzin.app.model.Addresses;
+import com.yoatzin.app.model.Address;
 
 
-public interface AddressesRepository extends CrudRepository<Addresses, Long> {
-	Optional<Addresses> findByState(String state);
-	Optional<Addresses> findByCity(String city);
+public interface AddressesRepository extends CrudRepository<Address, Long> {
+	Optional<Address> findByState(String state);
+	Optional<Address> findByCity(String city);
 }

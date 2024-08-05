@@ -11,46 +11,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yoatzin.app.dto.AddressesDto;
-import com.yoatzin.app.model.Addresses;
-import com.yoatzin.app.service.AddressesDtoService;
+import com.yoatzin.app.model.Address;
+import com.yoatzin.app.service.AddressService;
 
 @RestController
-@RequestMapping("api/v2/addresses")
+@RequestMapping("api/v1/addresses")
 @CrossOrigin(origins = "*")
-public class AddressesDtoController{
+public class AddressController{
 	
-	AddressesDtoService addressesDtoService;
+	AddressService addressService;
 	
-	public AddressesDtoController(AddressesDtoService addressesDtoService) {
-		this.addressesDtoService = addressesDtoService;
+	public AddressController(AddressService addressService) {
+		this.addressService = addressService;
 	}
 	
 	// Método para crear una nueva dirección
 	@PostMapping
-	public ResponseEntity<AddressesDto> createAddresses(@RequestBody Addresses addresses){
-		AddressesDto newAddresses = addressesDtoService.createAddresses(addresses);
+	public ResponseEntity<Address> createAddresses(@RequestBody Address address){
+		Address newAddresses = addressService.createAddresses(address);
 		return ResponseEntity.status(201).body(newAddresses);
 	}
 	
 	// Método para obtener una dirección por ID
 	@GetMapping("{id}") // api/v1/addresses/10
-	public ResponseEntity<AddressesDto> getAddressesById(@PathVariable("id")Long id){
-		AddressesDto existingAddresses = addressesDtoService.getAddressesById(id);
+	public ResponseEntity<Address> getAddressesById(@PathVariable("id")Long id){
+		Address existingAddresses = addressService.getAddressesById(id);
 		return ResponseEntity.ok(existingAddresses);
 	}
 	
 	// Método para actualizar una dirección
     @PutMapping("{id}")
-    public ResponseEntity<AddressesDto> updateAddresses(@RequestBody Addresses newAddressesData, @PathVariable("id") Long id) {
-    	AddressesDto updatedAddresses = addressesDtoService.updateAddresses(newAddressesData, id);
+    public ResponseEntity<Address> updateAddresses(@RequestBody Address newAddressesData, @PathVariable("id") Long id) {
+    	Address updatedAddresses = addressService.updateAddresses(newAddressesData, id);
         return ResponseEntity.ok(updatedAddresses);
     }
     
     // Método para eliminar una dirección
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteAddresses(@PathVariable("id") Long id) {
-    	addressesDtoService.deleteAddresses(id);
+    	addressService.deleteAddresses(id);
         return ResponseEntity.status(204).body("Address id " + id + " successfully deleted");
     }
     

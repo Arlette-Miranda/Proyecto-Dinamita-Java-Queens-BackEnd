@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name ="addresses")
 
-public class Addresses {
+public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_address;
@@ -31,11 +31,11 @@ public class Addresses {
 	@Column(name="reference", length=45, nullable=true)
 	private String reference;
 	
-	public Addresses() {
+	public Address() {
 		
 	}
 
-	public Addresses(String state, String city, String colony, String street, String zipcode, String reference) {
+	public Address(String state, String city, String colony, String street, String zipcode, String reference) {
 		super();
 		this.state = state;
 		this.city = city;
@@ -112,7 +112,7 @@ public class Addresses {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Addresses [id_address=");
+		builder.append("Address [id_address=");
 		builder.append(id_address);
 		builder.append(", fk_id_user=");
 		builder.append(fk_id_user);

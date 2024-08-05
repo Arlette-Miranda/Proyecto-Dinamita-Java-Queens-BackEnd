@@ -11,49 +11,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yoatzin.app.dto.ProductsDto;
-import com.yoatzin.app.model.Products;
-import com.yoatzin.app.service.ProductsDtoService;
+import com.yoatzin.app.model.Product;
+import com.yoatzin.app.service.ProductService;
 
 @RestController
-@RequestMapping("api/v2/products")
+@RequestMapping("api/v1/products")
 @CrossOrigin(origins = "*")
-public class ProductsDtoController {
+public class ProductController {
 	
-	ProductsDtoService productsDtoService;
+	ProductService productService;
 
-	public ProductsDtoController(ProductsDtoService productsDtoService) {
-		this.productsDtoService = productsDtoService;
+	public ProductController(ProductService productService) {
+		this.productService = productService;
 	}
 	
 	//Método para crear un nuevo producto
 	@PostMapping
-    public ResponseEntity<ProductsDto> createProducts(@RequestBody Products products) {
-        ProductsDto newProducts = productsDtoService.createProducts(products);
+    public ResponseEntity<Product> createProducts(@RequestBody Product product) {
+        Product newProducts = productService.createProducts(product);
         return ResponseEntity.status(201).body(newProducts);
     }
 	
 	// Método para obtener un producto por ID
     @GetMapping("{id}") // api/v1/products/10
-    public ResponseEntity<ProductsDto> getProductsById(@PathVariable("id") Long id) {
-        ProductsDto existingProduct = productsDtoService.getProductsById(id);
+    public ResponseEntity<Product> getProductsById(@PathVariable("id") Long id) {
+        Product existingProduct = productService.getProductsById(id);
         return ResponseEntity.ok(existingProduct);
     }
 	
     // Método para actualizar un producto
     @PutMapping("{id}")
-    public ResponseEntity<ProductsDto> updateProduct(@RequestBody Products newProductData, @PathVariable("id") Long id) {
-        ProductsDto updatedProduct = productsDtoService.updateProducts(newProductData, id);
-        return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<Product> updateProducts(@RequestBody Product newProductData, @PathVariable("id") Long id) {
+        Product updatedProducts = productService.updateProducts(newProductData, id);
+        return ResponseEntity.ok(updatedProducts);
     }
-
     
     // Método para eliminar un producto
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteProducts(@PathVariable("id") Long id) {
-        productsDtoService.deleteProducts(id);
+        productService.deleteProducts(id);
         return ResponseEntity.status(204).body("Product id " + id + " successfully deleted");
     }
     
-
 }

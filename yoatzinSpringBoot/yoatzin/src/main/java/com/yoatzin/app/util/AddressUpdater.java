@@ -1,12 +1,12 @@
 package com.yoatzin.app.util;
 
-import com.yoatzin.app.model.Addresses;
+import com.yoatzin.app.model.Address;
 
-public class AddressesUpdater{
+public class AddressUpdater{
 	
-	private AddressesUpdater() {}
+	private AddressUpdater() {}
 	
-	public static Addresses updateAddresses(Addresses existingAddress, Addresses newAddressData) {
+	public static Address updateAddresses(Address existingAddress, Address newAddressData) {
 		if (existingAddress == null || newAddressData == null) {
             throw new IllegalArgumentException("Address data cannot be null");
 	}
