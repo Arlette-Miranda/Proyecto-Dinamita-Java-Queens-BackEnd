@@ -1,6 +1,4 @@
 package com.yoatzin.app.model;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,13 +6,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
+
 @Entity
-@Table(name ="adresses")
+@Table(name ="addresses")
 
 public class Addresses {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long id_address;
 	
 	private Long fk_id_user;
 	
@@ -45,12 +45,12 @@ public class Addresses {
 		this.reference = reference;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getId_address() {
+		return id_address;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId_address(Long id_address) {
+		this.id_address = id_address;
 	}
 
 	public Long getFk_id_user() {
@@ -112,8 +112,8 @@ public class Addresses {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Addresses [id=");
-		builder.append(id);
+		builder.append("Addresses [id_address=");
+		builder.append(id_address);
 		builder.append(", fk_id_user=");
 		builder.append(fk_id_user);
 		builder.append(", state=");
