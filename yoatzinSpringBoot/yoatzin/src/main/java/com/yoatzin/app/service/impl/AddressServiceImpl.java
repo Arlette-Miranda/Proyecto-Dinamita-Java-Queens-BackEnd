@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.yoatzin.app.model.Address;
-import com.yoatzin.app.repository.AddressesRepository;
+import com.yoatzin.app.repository.AddressRepository;
 import com.yoatzin.app.service.AddressService;
 import com.yoatzin.app.util.AddressUpdater;
 
@@ -14,10 +14,10 @@ import com.yoatzin.app.util.AddressUpdater;
 public class AddressServiceImpl implements AddressService {
     
     //@Autowired
-    AddressesRepository addressesRepository;
+    AddressRepository addressRepository;
     
-    public AddressServiceImpl(AddressesRepository addressesRepository) {
-        this.addressesRepository = addressesRepository;
+    public AddressServiceImpl(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
     }
 
 	@Override
@@ -28,12 +28,12 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	private Address saveAddresses(Address address) {
-		return addressesRepository.save(address);
+		return addressRepository.save(address);
 	}
 
 	@Override
 	public Address getAddressesById(Long id) {
-		Optional<Address> optionalAddress = addressesRepository.findById(id);
+		Optional<Address> optionalAddress = addressRepository.findById(id);
         if (optionalAddress.isEmpty()) {
             throw new IllegalStateException("Address does not exist with id " + id);
         }
@@ -42,7 +42,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address getAddressesByState(String state) {
-		Optional<Address> optionalAddress = addressesRepository.findByState(state);
+		Optional<Address> optionalAddress = addressRepository.findByState(state);
         if (optionalAddress.isEmpty()) {
             throw new IllegalStateException("Address does not exist with state " + state);
         }
@@ -51,7 +51,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address getAddressesByCity(String city) {
-		Optional<Address> optionalAddress = addressesRepository.findByCity(city);
+		Optional<Address> optionalAddress = addressRepository.findByCity(city);
         if (optionalAddress.isEmpty()) {
             throw new IllegalStateException("Address does not exist with city " + city);
         }
