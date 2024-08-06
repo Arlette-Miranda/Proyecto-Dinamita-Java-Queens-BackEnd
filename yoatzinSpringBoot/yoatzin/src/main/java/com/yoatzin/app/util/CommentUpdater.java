@@ -2,10 +2,18 @@ package com.yoatzin.app.util;
 
 import com.yoatzin.app.model.Comment;
 
-public class CommentUpdater {
+public final class CommentsUpdater {
+
+    private CommentsUpdater() {}
+
     public static Comment updateComment(Comment existingComment, Comment newCommentData) {
-        existingComment.setComment(newCommentData.getComment());
-        existingComment.setFk_id_user(newCommentData.getFk_id_user());
+        if (existingComment == null || newCommentData == null) {
+            throw new IllegalArgumentException("Comment data cannot be null");
+        }
+
+        existingComment.setComment(newCommentData.getComment() != null ? newCommentData.getComment() : existingComment.getComment());
+        existingComment.setFkIdUser(newCommentData.getFkIdUser() != null ? newCommentData.getFkIdUser() : existingComment.getFkIdUser());
+
         return existingComment;
     }
 }

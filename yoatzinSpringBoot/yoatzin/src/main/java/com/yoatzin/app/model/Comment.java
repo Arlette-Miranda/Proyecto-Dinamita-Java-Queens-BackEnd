@@ -1,6 +1,5 @@
 package com.yoatzin.app.model;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,62 +8,63 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="comments")
+@Table(name = "comments")
+public class Comments {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_comment;
 
-public class Comment {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_comment;
-	
-	private Long fk_id_user;
-	
-	@Column(name="comment", length=280, nullable=false)
-	private String comment;
-	
-	public Comment(){
-		
-	}
+    @Column(name = "comment", length = 280, nullable = false)
+    private String comment;
 
-	public Comment(String comment) {
-		super();
-		this.comment = comment;
-	}
+    @Column(name = "fk_id_user", nullable = false)
+    private Long fk_id_user;
 
-	public Long getId_comment() {
-		return id_comment;
-	}
+    // Constructors
+    public Comments() {}
 
-	public void setId_comment(Long id_comment) {
-		this.id_comment = id_comment;
-	}
+    public Comments(String comment, Long fk_id_user) {
+        this.comment = comment;
+        this.fk_id_user = fk_id_user;
+    }
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
+    // Getters and Setters
+    public Long getId_comment() {
+        return id_comment;
+    }
 
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
+    public void setId_comment(Long id_comment) {
+        this.id_comment = id_comment;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [id_comment=");
-		builder.append(id_comment);
-		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
-		builder.append(", comment=");
-		builder.append(comment);
-		builder.append("]");
-		return builder.toString();
-	}
+    public Long getFk_id_user() {
+        return fk_id_user;
+    }
 
+    public void setFk_id_user(Long fk_id_user) {
+        this.fk_id_user = fk_id_user;
+    }
+
+    // toString() method
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Comments [id_comment=");
+        builder.append(id_comment);
+        builder.append(", comment=");
+        builder.append(comment);
+        builder.append(", fk_id_user=");
+        builder.append(fk_id_user);
+        builder.append("]");
+        return builder.toString();
+    }
 }
+
