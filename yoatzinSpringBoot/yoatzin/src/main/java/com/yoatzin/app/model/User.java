@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long id; 
 	
 	@ManyToOne
 	@JoinColumn(name= "fk_id_privilege")
