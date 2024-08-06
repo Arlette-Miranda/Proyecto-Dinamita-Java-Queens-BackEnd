@@ -24,7 +24,7 @@ public class User {
 	@JoinColumn(name= "fk_id_privilege")
 	@JsonIgnoreProperties({"description"})
 	private Privilege privilege;
-	
+
 	@Column(name="name", length=45, nullable=false)
 	private String name;
 	@Column(name="lastName", length=45, nullable=false)
@@ -43,7 +43,7 @@ public class User {
 		
 	}
 
-	public User(String name, String lastName, String phone, String email, String password, boolean active) {
+	public User(String name, String lastName, String phone, String email, String password, boolean active, Privilege privilege) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
@@ -51,6 +51,15 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.active = active;
+		this.privilege = privilege;
+	}
+	
+	public Privilege getPrivilege() {
+		return privilege;
+	}
+
+	public void setPrivilege(Privilege privilege) {
+		this.privilege = privilege;
 	}
 
 	public Long getId() {
@@ -114,6 +123,8 @@ public class User {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=");
 		builder.append(id);
+		builder.append(", fk_id_privilege=");
+		builder.append(privilege);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append(", lastName=");

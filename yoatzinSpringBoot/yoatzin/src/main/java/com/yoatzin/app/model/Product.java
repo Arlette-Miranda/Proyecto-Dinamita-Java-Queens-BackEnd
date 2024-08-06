@@ -42,7 +42,7 @@ public class Product {
 	}
 
 	public Product(String name, String category, BigDecimal price, String image, String origin, int stock,
-			String description) {
+			String description, Size size) {
 		super();
 		this.name = name;
 		this.category = category;
@@ -51,6 +51,7 @@ public class Product {
 		this.origin = origin;
 		this.stock = stock;
 		this.description = description;
+		this.size = size;
 	}
 
 	public Long getId_product() {
@@ -67,6 +68,14 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
 	}
 
 	public String getCategory() {
@@ -122,6 +131,8 @@ public class Product {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Product [id_product=");
 		builder.append(id_product);
+		builder.append(", fk_id_size=");
+		builder.append(size);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append(", category=");
