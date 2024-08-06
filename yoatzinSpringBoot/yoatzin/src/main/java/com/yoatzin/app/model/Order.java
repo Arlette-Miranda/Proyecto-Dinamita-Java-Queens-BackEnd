@@ -1,47 +1,46 @@
 package com.yoatzin.app.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class Order { // Renombrado de Orders a Order
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_order;
+    @Column(name = "id_order")
+    private Long id_order; // Identificador único de la orden
 
-    @Column(name = "quantity", nullable = false)
-    private int quantity;
+    @Column(nullable = false)
+    private Integer quantity; // Cantidad de productos en la orden
 
-    @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    @Column(nullable = false)
+    private LocalDateTime date; // Fecha de la orden
 
-    @Column(name = "fk_id_user", nullable = false)
-    private Long fk_id_user;
+    @ManyToOne
+    @JoinColumn(name = "fk_id_user", nullable = false)
+    private User user; // Relación muchos a uno con la entidad User
 
-    @Column(name = "fk_id_card", nullable = false)
-    private Long fk_id_card;
+    @ManyToOne
+    @JoinColumn(name = "fk_id_card", nullable = false)
+    private Card card; // Relación muchos a uno con la entidad Card
 
-    @Column(name = "fk_id_address", nullable = false)
-    private Long fk_id_address;
+    @ManyToOne
+    @JoinColumn(name = "fk_id_address", nullable = false)
+    private Address address; // Relación muchos a uno con la entidad Address
 
-    // Constructors
-    public Orders() {}
+    // Constructores
+    public Order() {}
 
-    public Orders(int quantity, LocalDateTime date, Long fk_id_user, Long fk_id_card, Long fk_id_address) {
+    public Order(Integer quantity, LocalDateTime date, User user, Card card, Address address) {
         this.quantity = quantity;
         this.date = date;
-        this.fk_id_user = fk_id_user;
-        this.fk_id_card = fk_id_card;
-        this.fk_id_address = fk_id_address;
+        this.user = user;
+        this.card = card;
+        this.address = address;
     }
 
-    // Getters and Setters
+    // Getters y Setters
     public Long getId_order() {
         return id_order;
     }
@@ -50,11 +49,11 @@ public class Orders {
         this.id_order = id_order;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -66,46 +65,46 @@ public class Orders {
         this.date = date;
     }
 
-    public Long getFk_id_user() {
-        return fk_id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setFk_id_user(Long fk_id_user) {
-        this.fk_id_user = fk_id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getFk_id_card() {
-        return fk_id_card;
+    public Card getCard() {
+        return card;
     }
 
-    public void setFk_id_card(Long fk_id_card) {
-        this.fk_id_card = fk_id_card;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
-    public Long getFk_id_address() {
-        return fk_id_address;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setFk_id_address(Long fk_id_address) {
-        this.fk_id_address = fk_id_address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    // toString() method
+    // toString() método
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Orders [id_order=");
+        builder.append("Order [id_order=");
         builder.append(id_order);
         builder.append(", quantity=");
         builder.append(quantity);
         builder.append(", date=");
         builder.append(date);
-        builder.append(", fk_id_user=");
-        builder.append(fk_id_user);
-        builder.append(", fk_id_card=");
-        builder.append(fk_id_card);
-        builder.append(", fk_id_address=");
-        builder.append(fk_id_address);
+        builder.append(", user=");
+        builder.append(user != null ? user.getId() : "null"); // Muestra el ID del usuario o "null" si es nulo
+        builder.append(", card=");
+        builder.append(card != null ? card.getId() : "null"); // Muestra el ID de la tarjeta o "null" si es nulo
+        builder.append(", address=");
+        builder.append(address != null ? address.getId() : "null"); // Muestra el ID de la dirección o "null" si es nulo
         builder.append("]");
         return builder.toString();
     }

@@ -1,34 +1,31 @@
 package com.yoatzin.app.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "comments")
-public class Comments {
+public class Comment { // Renombrado de Comments a Comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_comment;
+    @Column(name = "id_comment")
+    private Long id_comment; // Identificador único del comentario
 
     @Column(name = "comment", length = 280, nullable = false)
     private String comment;
 
-    @Column(name = "fk_id_user", nullable = false)
-    private Long fk_id_user;
+    @ManyToOne
+    @JoinColumn(name = "fk_id_user", nullable = false)
+    private User user; // Relación muchos a uno con la entidad User
 
-    // Constructors
-    public Comments() {}
+    // Constructores
+    public Comment() {}
 
-    public Comments(String comment, Long fk_id_user) {
+    public Comment(String comment, User user) {
         this.comment = comment;
-        this.fk_id_user = fk_id_user;
+        this.user = user;
     }
 
-    // Getters and Setters
+    // Getters y Setters
     public Long getId_comment() {
         return id_comment;
     }
@@ -45,26 +42,25 @@ public class Comments {
         this.comment = comment;
     }
 
-    public Long getFk_id_user() {
-        return fk_id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setFk_id_user(Long fk_id_user) {
-        this.fk_id_user = fk_id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    // toString() method
+    // toString() método
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Comments [id_comment=");
+        builder.append("Comment [id_comment=");
         builder.append(id_comment);
         builder.append(", comment=");
         builder.append(comment);
-        builder.append(", fk_id_user=");
-        builder.append(fk_id_user);
+        builder.append(", user=");
+        builder.append(user != null ? user.getId() : "null"); // Muestra el ID del usuario o "null" si es nulo
         builder.append("]");
         return builder.toString();
     }
 }
-
