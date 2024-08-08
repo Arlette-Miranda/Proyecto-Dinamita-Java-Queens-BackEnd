@@ -1,110 +1,111 @@
 package com.yoatzin.app.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 @Entity
-@Table(name ="orders")
+@Table(name = "orders")
+public class Order { // Renombrado de Orders a Order
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_order")
+    private Long id_order; // Identificador único de la orden
 
-public class Order {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_order;
-	
-	private Long fk_id_user;
-	private Long fk_id_card;
-	private Long fk_id_address;
-	
-	@Column(name="quantity", nullable=false)
-	private int quantity;
-	@Column(name="date", nullable=false)
-	private LocalDateTime date;
-	
-	public Order() {
-		
-	}
+    @Column(nullable = false)
+    private Integer quantity; // Cantidad de productos en la orden
 
-	public Order(int quantity, LocalDateTime date) {
-		super();
-		this.quantity = quantity;
-		this.date = date;
-	}
+    @Column(nullable = false)
+    private LocalDateTime date; // Fecha de la orden
 
-	public Long getId_order() {
-		return id_order;
-	}
+    @ManyToOne
+    @JoinColumn(name = "fk_id_user", nullable = false)
+    private User user; // Relación muchos a uno con la entidad User
 
-	public void setId_order(Long id_order) {
-		this.id_order = id_order;
-	}
+    @ManyToOne
+    @JoinColumn(name = "fk_id_card", nullable = false)
+    private Card card; // Relación muchos a uno con la entidad Card
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
+    @ManyToOne
+    @JoinColumn(name = "fk_id_address", nullable = false)
+    private Address address; // Relación muchos a uno con la entidad Address
 
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
+    // Constructores
+    public Order() {}
 
-	public Long getFk_id_card() {
-		return fk_id_card;
-	}
+    public Order(Integer quantity, LocalDateTime date, User user, Card card, Address address) {
+        this.quantity = quantity;
+        this.date = date;
+        this.user = user;
+        this.card = card;
+        this.address = address;
+    }
 
-	public void setFk_id_card(Long fk_id_card) {
-		this.fk_id_card = fk_id_card;
-	}
+    // Getters y Setters
+    public Long getId_order() {
+        return id_order;
+    }
 
-	public Long getFk_id_address() {
-		return fk_id_address;
-	}
+    public void setId_order(Long id_order) {
+        this.id_order = id_order;
+    }
 
-	public void setFk_id_address(Long fk_id_address) {
-		this.fk_id_address = fk_id_address;
-	}
+    public Integer getQuantity() {
+        return quantity;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public LocalDateTime getDate() {
+        return date;
+    }
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Order [id_order=");
-		builder.append(id_order);
-		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
-		builder.append(", fk_id_card=");
-		builder.append(fk_id_card);
-		builder.append(", fk_id_address=");
-		builder.append(fk_id_address);
-		builder.append(", quantity=");
-		builder.append(quantity);
-		builder.append(", date=");
-		builder.append(date);
-		builder.append("]");
-		return builder.toString();
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
+    public Card getCard() {
+        return card;
+    }
 
-	
-	
-	
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    // toString() método
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Order [id_order=");
+        builder.append(id_order);
+        builder.append(", quantity=");
+        builder.append(quantity);
+        builder.append(", date=");
+        builder.append(date);
+        builder.append(", user=");
+        builder.append(user != null ? user.getId() : "null"); // Muestra el ID del usuario o "null" si es nulo
+        builder.append(", card=");
+        builder.append(card != null ? card.getId() : "null"); // Muestra el ID de la tarjeta o "null" si es nulo
+        builder.append(", address=");
+        builder.append(address != null ? address.getId() : "null"); // Muestra el ID de la dirección o "null" si es nulo
+        builder.append("]");
+        return builder.toString();
+    }
 }

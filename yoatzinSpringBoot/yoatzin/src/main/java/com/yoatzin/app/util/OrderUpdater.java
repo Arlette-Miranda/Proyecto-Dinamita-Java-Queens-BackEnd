@@ -2,13 +2,20 @@ package com.yoatzin.app.util;
 
 import com.yoatzin.app.model.Order;
 
-public class OrderUpdater {
+public final class OrderUpdater {
+    private OrderUpdater() {}
+
     public static Order updateOrder(Order existingOrder, Order newOrderData) {
-        existingOrder.setFk_id_user(newOrderData.getFk_id_user());
-        existingOrder.setFk_id_card(newOrderData.getFk_id_card());
-        existingOrder.setFk_id_address(newOrderData.getFk_id_address());
+        if (existingOrder == null || newOrderData == null) {
+            throw new IllegalArgumentException("Order data cannot be null");
+        }
+
         existingOrder.setQuantity(newOrderData.getQuantity());
         existingOrder.setDate(newOrderData.getDate());
+        existingOrder.setUser(newOrderData.getUser());
+        existingOrder.setCard(newOrderData.getCard());
+        existingOrder.setAddress(newOrderData.getAddress());
+
         return existingOrder;
     }
 }
