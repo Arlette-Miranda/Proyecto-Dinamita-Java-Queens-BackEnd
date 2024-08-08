@@ -3,8 +3,6 @@ package com.yoatzin.app.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.yoatzin.app.model.Privilege;
-import com.yoatzin.app.model.User;
 import com.yoatzin.app.repository.AddressRepository;
 import com.yoatzin.app.repository.CardRepository;
 import com.yoatzin.app.repository.CommentRepository;
@@ -51,16 +49,9 @@ public class SetUpApp implements CommandLineRunner {
 
 
 	@Override
-	public void run(String...args) throws Exception{
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
 		
-		// Privilegios para los usuarios
-		Privilege customer = priRepository.save(new Privilege(1L,"CUSTOMER", "Cliente Yoatzin", true ));
-		Privilege adm = priRepository.save(new Privilege(2L, "ADMIN", "Administrador Yoatzin", true));
-		Privilege warehouseManager = priRepository.save(new Privilege(3L,"WAREHOUSE_MANAGER", "Almacén Yoatzin", true ));
-		
-		
-		User jazz = new User(); 
-		jazz.setName("Jazz");
-		userService.createUser(  jazz  );
 	}
+
 }

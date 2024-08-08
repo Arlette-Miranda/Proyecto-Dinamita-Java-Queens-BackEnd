@@ -35,7 +35,6 @@ public class Card {
 	}
 
 	public Card(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active) {
-		super();
 		this.number = number;
 		this.owner_card = owner_card;
 		this.month = month;

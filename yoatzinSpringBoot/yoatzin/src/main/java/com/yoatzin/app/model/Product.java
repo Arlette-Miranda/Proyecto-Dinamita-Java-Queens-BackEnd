@@ -36,23 +36,20 @@ public class Product {
 	private int stock;
 	@Column(name="description", columnDefinition = "LONGTEXT", nullable=true)
 	private String description;
-	
-	public Product() {
-		
-	}
 
+	public Product() {}
+	
 	public Product(String name, String category, BigDecimal price, String image, String origin, int stock,
-			String description) {
-		super();
+			String description, Size size) {
 		this.name = name;
 		this.category = category;
-		this.price = price;
+		this.price = price ;
 		this.image = image;
 		this.origin = origin;
 		this.stock = stock;
 		this.description = description;
+		this.size = size;
 	}
-
 	public Long getId_product() {
 		return id_product;
 	}
@@ -117,27 +114,12 @@ public class Product {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Product [id_product=");
-		builder.append(id_product);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", category=");
-		builder.append(category);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", image=");
-		builder.append(image);
-		builder.append(", origin=");
-		builder.append(origin);
-		builder.append(", stock=");
-		builder.append(stock);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append("]");
-		return builder.toString();
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
 	}
 	
 }

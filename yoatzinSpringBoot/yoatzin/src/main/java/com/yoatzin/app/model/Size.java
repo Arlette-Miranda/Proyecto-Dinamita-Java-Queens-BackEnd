@@ -23,7 +23,6 @@ public class Size {
 	}
 
 	public Size(String size) {
-		super();
 		this.size = size;
 	}
 
