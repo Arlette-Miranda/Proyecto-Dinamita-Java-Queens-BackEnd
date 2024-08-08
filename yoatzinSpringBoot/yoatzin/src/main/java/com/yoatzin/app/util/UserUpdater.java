@@ -12,7 +12,7 @@ public final class UserUpdater {
 		}
 		
 		existingUser.setName(newUserData.getName());
-		existingUser.setLast_name(newUserData.getLast_name());
+		existingUser.setLast_name(newUserData.getLastName());
 		existingUser.setPhone(newUserData.getPhone());
 		existingUser.setEmail(newUserData.getEmail());
 		existingUser.setPassword(newUserData.getPassword());
