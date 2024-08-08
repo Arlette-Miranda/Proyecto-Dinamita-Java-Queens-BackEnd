@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.yoatzin.app.model.Card;
+import com.yoatzin.app.model.User;
 import com.yoatzin.app.repository.CardRepository;
 import com.yoatzin.app.service.CardService;
 import com.yoatzin.app.util.CardUpdater;
@@ -21,7 +22,7 @@ public class CardServiceImpl implements CardService {
     
     @Override
     public Card createCards(Card card) { //implementación 
-    	Long id_card = card.getFk_id_user();
+    	User id_card = card.getUser();
     	if(cardRepository.existsById(id_card) ) {
     		throw new IllegalStateException("The id_cards " + card + "is already registered.");
     	}
