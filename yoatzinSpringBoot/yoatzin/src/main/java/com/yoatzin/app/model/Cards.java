@@ -11,33 +11,37 @@ import jakarta.persistence.Table;
 @Table(name ="cards")
 
 public class Cards {
+	
 	@Id
+	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_card;
 	
 	private Long fk_id_user;
 	@Column(name="number", length=16, nullable=false)
-	private String number;
+	private Long number;
 	@Column(name="owner_card", length=100, nullable=false)
-	private String owner_card;
+	private Long owner_card;
 	@Column(name="month", length=2, nullable=false)
-	private String month;
+	private Long month;
 	@Column(name="year", length=4, nullable=false)
-	private String year;
+	private Long year;
 	@Column(name="cvc", length=4, nullable=false)
-	private String cvc;
+	private Long cvc;
+	private boolean active;
 	
 	public Cards() {
 		
 	}
 
-	public Cards(String number, String owner_card, String month, String year, String cvc) {
+	public Cards(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active) {
 		super();
 		this.number = number;
 		this.owner_card = owner_card;
 		this.month = month;
 		this.year = year;
 		this.cvc = cvc;
+		this.active = active;
 	}
 
 	public Long getId_card() {
@@ -56,46 +60,55 @@ public class Cards {
 		this.fk_id_user = fk_id_user;
 	}
 
-	public String getNumber() {
+	public Long getNumber() {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(Long number) {
 		this.number = number;
 	}
 
-	public String getOwner_card() {
+	public Long getOwner_card() {
 		return owner_card;
 	}
 
-	public void setOwner_card(String owner_card) {
+	public void setOwner_card(Long owner_card) {
 		this.owner_card = owner_card;
 	}
 
-	public String getMonth() {
+	public Long getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(Long month) {
 		this.month = month;
 	}
 
-	public String getYear() {
+	public Long getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(Long year) {
 		this.year = year;
 	}
 
-	public String getCvc() {
+	public Long getCvc() {
 		return cvc;
 	}
 
-	public void setCvc(String cvc) {
+	public void setCvc(Long cvc) {
 		this.cvc = cvc;
 	}
+    
+	public boolean isActive() {
+		return active;
+	}
 
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -113,9 +126,11 @@ public class Cards {
 		builder.append(year);
 		builder.append(", cvc=");
 		builder.append(cvc);
+		builder.append(", active=");
+		builder.append(active);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	
 }

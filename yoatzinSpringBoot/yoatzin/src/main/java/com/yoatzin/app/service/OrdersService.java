@@ -6,4 +6,6 @@ import com.yoatzin.app.model.Orders;
 @Service
 public interface OrdersService {
 
+	Orders createOrders(Orders orders);
+
 }
