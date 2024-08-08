@@ -44,7 +44,6 @@ public class User {
 	}
 
 	public User(String name, String lastName, String phone, String email, String password, boolean active) {
-		super();
 		this.name = name;
 		this.lastName = lastName;
 		this.phone = phone;

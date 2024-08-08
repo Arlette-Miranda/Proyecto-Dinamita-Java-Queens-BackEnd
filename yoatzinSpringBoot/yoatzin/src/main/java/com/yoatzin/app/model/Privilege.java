@@ -19,9 +19,9 @@ public class Privilege {
 	private Long id_privilege;
 	
 	@Column(name="privilege", length=20, nullable=false)
-	private Long privilege;
+	private String privilege;
 	@Column(name="description", length=280, nullable=true)
-	private Long description;
+	private String description;
 	private boolean active;
 
 
@@ -29,13 +29,13 @@ public class Privilege {
 	public Privilege () {
 		
 	}
-
-	public Privilege(Long privilege, Long description, boolean active) {
-		super();
+	public Privilege(Long id_privilege, String privilege, String description, boolean active) {
+		this.id_privilege = id_privilege;
 		this.privilege = privilege;
 		this.description = description;
 		this.active = active;
 	}
+
 
 	public Long getId_privilege() {
 		return id_privilege;
@@ -45,19 +45,19 @@ public class Privilege {
 		this.id_privilege = id_privilege;
 	}
 
-	public Long getPrivilege() {
+	public String getPrivilege() {
 		return privilege;
 	}
 
-	public void setPrivilege(Long privilege) {
+	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
 	}
 
-	public Long getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(Long description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
     
@@ -83,11 +83,6 @@ public class Privilege {
 		builder.append(active);
 		builder.append("]");
 		return builder.toString();
-		
-	}
-
-	public void setId_Privilege(Object object) {
-		
 		
 	}
 
