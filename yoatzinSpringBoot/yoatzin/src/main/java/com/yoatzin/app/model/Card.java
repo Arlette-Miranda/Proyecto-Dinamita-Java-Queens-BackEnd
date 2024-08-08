@@ -1,23 +1,25 @@
 package com.yoatzin.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="cards")
 
 public class Card {
-	
-	@Id
-	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_card;
 	
-	private Long fk_id_user;
+	// Se crea lleve foranea
+		@ManyToOne
+		@JoinColumn(name = "fk_id_user")
+		@JsonIgnoreProperties({"name","lastName", "phone","email","password"})
+		private User user;
+	
 	@Column(name="number", length=16, nullable=false)
 	private Long number;
 	@Column(name="owner_card", length=100, nullable=false)
@@ -30,11 +32,10 @@ public class Card {
 	private Long cvc;
 	private boolean active;
 	
-	public Card() {
-		
-	}
-
-	public Card(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active) {
+	public Card() {}
+	
+	//Se agrega User user por Fk en atributos
+	public Card(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active, User user) {
 		super();
 		this.number = number;
 		this.owner_card = owner_card;
@@ -42,6 +43,7 @@ public class Card {
 		this.year = year;
 		this.cvc = cvc;
 		this.active = active;
+		this.user = user; // Se agrega por llave foranea
 	}
 
 	public Long getId_card() {
@@ -52,13 +54,6 @@ public class Card {
 		this.id_card = id_card;
 	}
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
-
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
 
 	public Long getNumber() {
 		return number;
@@ -108,6 +103,14 @@ public class Card {
 		this.active = active;
 	}
 	
+	// Se agregan Get y Set de Fk
+		public User getUser() {
+			return user;
+		}
+
+		public void setUser(User user) {
+			this.user = user;
+		}
 	
 	@Override
 	public String toString() {
@@ -115,7 +118,7 @@ public class Card {
 		builder.append("Card [id_card=");
 		builder.append(id_card);
 		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
+		builder.append(user);
 		builder.append(", number=");
 		builder.append(number);
 		builder.append(", owner_card=");

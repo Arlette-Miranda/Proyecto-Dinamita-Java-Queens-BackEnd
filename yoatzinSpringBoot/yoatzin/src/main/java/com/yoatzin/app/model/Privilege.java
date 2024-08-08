@@ -3,20 +3,15 @@ package com.yoatzin.app.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="privileges")
 
 public class Privilege {
-	
-	@Id
-	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_privilege;
+	
+	
 	
 	@Column(name="privilege", length=20, nullable=false)
 	private Long privilege;
@@ -26,9 +21,7 @@ public class Privilege {
 
 
 
-	public Privilege () {
-		
-	}
+	public Privilege () {}
 
 	public Privilege(Long privilege, Long description, boolean active) {
 		super();
@@ -85,12 +78,5 @@ public class Privilege {
 		return builder.toString();
 		
 	}
-
-	public void setId_Privilege(Object object) {
-		
-		
-	}
-
-	
 	
 }
