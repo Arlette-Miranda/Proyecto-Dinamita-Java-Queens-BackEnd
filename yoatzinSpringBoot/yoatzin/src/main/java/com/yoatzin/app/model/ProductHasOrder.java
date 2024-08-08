@@ -1,18 +1,35 @@
-package com.yoatzin.app.model;import java.math.BigDecimal;
+package com.yoatzin.app.model;import java.io.Serializable;
+import java.math.BigDecimal;
+
+import com.yoatzin.app.model.composite_key.ProductOrderKey;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="products_has_orders")
 
-public class Product_has_order {
-	@Id
-	private Long id_product;
+public class ProductHasOrder implements Serializable {
 	
-	private Long id_order;
+	private static final long serialVersionUID = 1L;
+	
+	@EmbeddedId
+	private ProductOrderKey id;
+	
+	@ManyToOne
+	@MapsId("productId")
+	@JoinColumn(name = "product_id")
+	private Product product;
+	
+	@ManyToOne
+	@MapsId("orderId")
+	@JoinColumn(name = "order_id")
+	private Order order;
 	
 	@Column(name="partial_amount", precision = 10, scale = 2, nullable = false)
     private BigDecimal partial_amount;
@@ -23,33 +40,43 @@ public class Product_has_order {
 	@Column(name="final_amount", precision = 10, scale = 2, nullable = false)
     private BigDecimal final_amount;
 	
-	public Product_has_order() {
+	public ProductHasOrder() {
 		
 	}
 
-	public Product_has_order(BigDecimal partial_amount, BigDecimal discount, BigDecimal shipment,
-			BigDecimal final_amount) {
-		super();
+	public ProductHasOrder(ProductOrderKey id, Product product, Order order, BigDecimal partial_amount,
+			BigDecimal discount, BigDecimal shipment, BigDecimal final_amount) {
+		this.id = id;
+		this.product = product;
+		this.order = order;
 		this.partial_amount = partial_amount;
 		this.discount = discount;
 		this.shipment = shipment;
 		this.final_amount = final_amount;
 	}
 
-	public Long getId_product() {
-		return id_product;
+	public ProductOrderKey getId() {
+		return id;
 	}
 
-	public void setId_product(Long id_product) {
-		this.id_product = id_product;
+	public void setId(ProductOrderKey id) {
+		this.id = id;
 	}
 
-	public Long getId_order() {
-		return id_order;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setId_order(Long id_order) {
-		this.id_order = id_order;
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public BigDecimal getPartial_amount() {
@@ -82,25 +109,6 @@ public class Product_has_order {
 
 	public void setFinal_amount(BigDecimal final_amount) {
 		this.final_amount = final_amount;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Product_has_order [id_product=");
-		builder.append(id_product);
-		builder.append(", id_order=");
-		builder.append(id_order);
-		builder.append(", partial_amount=");
-		builder.append(partial_amount);
-		builder.append(", discount=");
-		builder.append(discount);
-		builder.append(", shipment=");
-		builder.append(shipment);
-		builder.append(", final_amount=");
-		builder.append(final_amount);
-		builder.append("]");
-		return builder.toString();
 	}
 	
 
