@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -11,10 +14,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name ="cards")
 
-public class Cards {
+public class Card {
 	
 	@Id
-	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_card;
 	
@@ -25,28 +27,26 @@ public class Cards {
 		private User user;
 	
 	@Column(name="number", length=16, nullable=false)
-	private Long number;
-	@Column(name="owner_card", length=100, nullable=false)
-	private Long owner_card;
+	private String number;
+	@Column(name="ownerCard", length=100, nullable=false)
+	private String ownerCard;
 	@Column(name="month", length=2, nullable=false)
-	private Long month;
+	private String month;
 	@Column(name="year", length=4, nullable=false)
-	private Long year;
+	private String year;
 	@Column(name="cvc", length=4, nullable=false)
-	private Long cvc;
-	private boolean active;
+	private String cvc;
 	
 	public Card() {}
 	
 	//Se agrega User user por Fk en atributos
-	public Card(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active, User user) {
+	public Card(String number, String ownerCard, String month, String year, String cvc, User user) {
 		super();
 		this.number = number;
-		this.owner_card = owner_card;
+		this.ownerCard = ownerCard;
 		this.month = month;
 		this.year = year;
 		this.cvc = cvc;
-		this.active = active;
 		this.user = user; // Se agrega por llave foranea
 	}
 
@@ -59,54 +59,46 @@ public class Cards {
 	}
 
 
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
-	public Long getOwner_card() {
-		return owner_card;
+	public String getOwnerCard() {
+		return ownerCard;
 	}
 
-	public void setOwner_card(Long owner_card) {
-		this.owner_card = owner_card;
+	public void setOwnerCard(String ownerCard) {
+		this.ownerCard = ownerCard;
 	}
 
-	public Long getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Long month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 
-	public Long getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Long year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
-	public Long getCvc() {
+	public String getCvc() {
 		return cvc;
 	}
 
-	public void setCvc(Long cvc) {
+	public void setCvc(String cvc) {
 		this.cvc = cvc;
 	}
     
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	
 	// Se agregan Get y Set de Fk
 		public User getUser() {
 			return user;
@@ -125,16 +117,14 @@ public class Cards {
 		builder.append(user);
 		builder.append(", number=");
 		builder.append(number);
-		builder.append(", owner_card=");
-		builder.append(owner_card);
+		builder.append(", ownerCard=");
+		builder.append(ownerCard);
 		builder.append(", month=");
 		builder.append(month);
 		builder.append(", year=");
 		builder.append(year);
 		builder.append(", cvc=");
 		builder.append(cvc);
-		builder.append(", active=");
-		builder.append(active);
 		builder.append("]");
 		return builder.toString();
 	}

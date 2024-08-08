@@ -17,8 +17,6 @@ public class SetUpApp implements CommandLineRunner {
 	
 	@Override
 	public void run(String...args) throws Exception{
-		User jazz = new User(); 
-		jazz.setName("Jazz");
-		userService.createUser(  jazz  );
+
 	}
 }

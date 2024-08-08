@@ -9,6 +9,6 @@ import com.yoatzin.app.model.composite_key.ProductOrderKey;
 
 public interface ProductHasOrderRepository extends CrudRepository<ProductHasOrder, ProductOrderKey> {
 
-	List<ProductHasOrder> findAllByProductID(Long productId);
+	List<ProductHasOrder> findAllByProductIdProduct(Long idProduct);
 }
 

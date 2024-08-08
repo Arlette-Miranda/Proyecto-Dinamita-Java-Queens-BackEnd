@@ -43,7 +43,7 @@ public class ProductHasOrderServiceImpl implements ProductHasOrderService {
 
 	@Override
 	public Iterable<ProductHasOrder> getProductHasOrderByProductId(Long productId) {
-		return prHorRepository.findAllByProductID(productId);
+		return prHorRepository.findAllByProductIdProduct(productId);
 	}
 
 	@Override

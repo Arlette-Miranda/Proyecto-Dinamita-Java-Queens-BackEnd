@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     
     @Override
     public Product createProducts(Product product) {
-    	product.setId_product(null);
+    	product.setIdProduct(null);
         Product newProducts = saveProducts(product);
         return newProducts;
     }
