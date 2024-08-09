@@ -1,5 +1,5 @@
 
-# ![logo](/img/logo.jpg) 🪷Yoatzin 
+# ![logo](/img/logo.jpg) Yoatzin 🪷
 
 Un proyecto dedicado a la venta de artesanías mexicanasa nivel nacional.
 
