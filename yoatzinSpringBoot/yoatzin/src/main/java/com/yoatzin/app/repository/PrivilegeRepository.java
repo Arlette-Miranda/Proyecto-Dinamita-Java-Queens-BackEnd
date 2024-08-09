@@ -8,10 +8,10 @@ import com.yoatzin.app.model.Privilege;
 
 public interface PrivilegeRepository extends CrudRepository<Privilege, Long> {
 
-	Optional<Privilege> findById_Privilege(Long id_privilege);
-	Iterable<Privilege> findAllByActiveTrue();
-	Iterable<Privilege> findAllByActiveFalse();
-	boolean existsById_Privileges(Long id_privilege);
+	Optional<Privilege> findByIdPrivilege(Long id_privilege);
+	Optional<Privilege> findByPrivilege(String privilege);
+    Optional<Privilege> findByDescription(String description);
+	
 
 }
 
