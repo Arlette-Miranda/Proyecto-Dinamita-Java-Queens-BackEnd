@@ -1,8 +1,5 @@
 
-![logo](/img/logo.jpg)
-
-
-# 🪷Yoatzin   
+# 🪷Yoatzin ![logo](/img/logo.jpg)
 
 Un proyecto dedicado a la venta de artesanías mexicanasa nivel nacional.
 
@@ -38,12 +35,9 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
     - com.yoatzin.app.service.impl
     - com.yoatzin.app.util
 - src/main/resources
-    
-    - application.properties
 
 - src/test/Java
-    
-    - com.yoatzin.app
+
 - JRE System Library [JavaSE-17]
 
 - Proyect and External Dependencie
@@ -51,12 +45,8 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
 - Bin
 
 - Gradle
-    - wrapper
 
 - src
-    
-    - main
-    - test
 - build.gradle
 - gradlew
 - gradlew.bat
@@ -71,6 +61,17 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
         function
 
 
+## 💻Instalación del proyecto
+
+🌟 **Install my-project with  git**
+
+```bash
+  1. Abrir terminal git bash
+  2. mkdir nombre_carpeta_donde_se_pondrá_proyecto
+  3. cd nombre_carpeta_creada
+  4. git clone ssh_del_proyecto_yoatzin
+```
+    
 ## 👩🏻‍❤️‍👩🏻 Authors
 ¡Hola! Somos Dinamita Java Queens. Nosotras como equipo de mujeres apasionadas por el desarrollo web y comprometidas con el empoderamiento, nos enorgullece ser parte de este ambicioso proyecto que busca llevar las hermosas artesanías de Yoatzin a todo el territorio nacional, a través de la creación de esta plataforma e-commerce. 🧨✨
 
@@ -86,14 +87,9 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
 
 
 
-## 💻Instalación del proyecto
+## Features
 
-🌟 **Install my-project with  git**
-
-```bash
-  1. Abrir terminal git bash
-  2. mkdir nombre_carpeta_donde_se_pondrá_proyecto
-  3. cd nombre_carpeta_creada
-  4. git clone ssh_del_proyecto_yoatzin
-```
-    
+- Light/dark mode toggle
+- Live previews
+- Fullscreen mode
+- Cross platform
