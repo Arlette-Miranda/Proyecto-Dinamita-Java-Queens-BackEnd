@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.yoatzin.app.model.User;
 
 @Service
-
 public interface UserService {
 	User createUser(User user);
 	User getUserById(Long id);
