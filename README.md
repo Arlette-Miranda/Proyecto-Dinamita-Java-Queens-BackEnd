@@ -70,7 +70,7 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
 ## 👩🏻‍❤️‍👩🏻 Authors
 ¡Hola! Somos Dinamita Java Queens. Nosotras como equipo de mujeres apasionadas por el desarrollo web y comprometidas con el empoderamiento, nos enorgullece ser parte de este ambicioso proyecto que busca llevar las hermosas artesanías de Yoatzin a todo el territorio nacional, a través de la creación de esta plataforma e-commerce. 🧨✨
 
-- **Visitanos en:**
+- **Visitanos en nuetro github:**
 - [@Abigail](https://github.com/EusbekMendoza)
 - [@Alejandra](https://github.com/AlejandraAC)
 - [@Arlette](https://github.com/Arlette-Miranda)
