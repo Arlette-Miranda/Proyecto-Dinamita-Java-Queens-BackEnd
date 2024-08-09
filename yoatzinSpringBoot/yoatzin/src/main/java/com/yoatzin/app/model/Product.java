@@ -36,17 +36,15 @@ public class Product {
 	private int stock;
 	@Column(name="description", columnDefinition = "LONGTEXT", nullable=true)
 	private String description;
-	
-	public Product() {
-		
-	}
 
+	public Product() {}
+	
 	public Product(String name, String category, BigDecimal price, String image, String origin, int stock,
 			String description, Size size) {
 		super();
 		this.name = name;
 		this.category = category;
-		this.price = price;
+		this.price = price ;
 		this.image = image;
 		this.origin = origin;
 		this.stock = stock;
