@@ -3,6 +3,8 @@ package com.yoatzin.app.service;
 import com.yoatzin.app.model.Order;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 @Service
 public interface OrderService {
     Order createOrder(Order order); // Método para crear una orden.
