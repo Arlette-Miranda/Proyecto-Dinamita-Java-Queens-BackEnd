@@ -84,12 +84,3 @@ En esta parte del proyecto te mostraremos como esta diseñada nuestra base de da
 - [@Marbella](https://github.com/marbellacabrera)
 - [@Neri](https://github.com/NeriArmijoMiranda)
 
-
-
-
-## Features
-
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
