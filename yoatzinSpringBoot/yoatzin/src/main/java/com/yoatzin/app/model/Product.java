@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_product;
+	private Long idProduct;
 	
 	@ManyToOne
 	@JoinColumn(name= "fk_id_size")
@@ -36,17 +36,15 @@ public class Product {
 	private int stock;
 	@Column(name="description", columnDefinition = "LONGTEXT", nullable=true)
 	private String description;
-	
-	public Product() {
-		
-	}
 
+	public Product() {}
+	
 	public Product(String name, String category, BigDecimal price, String image, String origin, int stock,
 			String description, Size size) {
 		super();
 		this.name = name;
 		this.category = category;
-		this.price = price;
+		this.price = price ;
 		this.image = image;
 		this.origin = origin;
 		this.stock = stock;
@@ -54,12 +52,12 @@ public class Product {
 		this.size = size;
 	}
 
-	public Long getId_product() {
-		return id_product;
+	public Long getIdProduct() {
+		return idProduct;
 	}
 
-	public void setId_product(Long id_product) {
-		this.id_product = id_product;
+	public void setIdProduct(Long id_product) {
+		this.idProduct = id_product;
 	}
 
 	public String getName() {
@@ -130,7 +128,7 @@ public class Product {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Product [id_product=");
-		builder.append(id_product);
+		builder.append(idProduct);
 		builder.append(", fk_id_size=");
 		builder.append(size);
 		builder.append(", name=");

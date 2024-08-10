@@ -12,85 +12,63 @@ import jakarta.persistence.Table;
 @Table(name ="privileges")
 
 public class Privilege {
-	
 	@Id
-	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_privilege;
+	private Long idPrivilege;
+	
+	
 	
 	@Column(name="privilege", length=20, nullable=false)
-	private Long privilege;
+	private String privilege;
 	@Column(name="description", length=280, nullable=true)
-	private Long description;
-	private boolean active;
+	private String description;
 
+	public Privilege () {}
 
-
-	public Privilege () {
-		
-	}
-
-	public Privilege(Long privilege, Long description, boolean active) {
+	public Privilege(String privilege, String description) {
 		super();
 		this.privilege = privilege;
 		this.description = description;
-		this.active = active;
 	}
 
-	public Long getId_privilege() {
-		return id_privilege;
+	public Long getIdPrivilege() {
+		return idPrivilege;
 	}
 
-	public void setId_privilege(Long id_privilege) {
-		this.id_privilege = id_privilege;
+	public void setIdPrivilege(Long idPrivilege) {
+		this.idPrivilege = idPrivilege;
 	}
 
-	public Long getPrivilege() {
+	public String getPrivilege() {
 		return privilege;
 	}
 
-	public void setPrivilege(Long privilege) {
+	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
 	}
 
-	public Long getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(Long description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
     
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 	
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Privilege [id_privlege=");
-		builder.append(id_privilege);
+		builder.append(idPrivilege);
 		builder.append(", privilege=");
 		builder.append(privilege);
 		builder.append(", description=");
 		builder.append(description);
-		builder.append(", active=");
-		builder.append(active);
 		builder.append("]");
 		return builder.toString();
 		
 	}
-
-	public void setId_Privilege(Object object) {
-		
-		
-	}
-
-	
 	
 }

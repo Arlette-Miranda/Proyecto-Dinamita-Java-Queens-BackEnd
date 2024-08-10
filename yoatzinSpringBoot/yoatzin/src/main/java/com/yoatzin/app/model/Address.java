@@ -44,7 +44,6 @@ public class Address {
 
 	//Se agrega User user por Fk en atributos
 	public Address(String state, String city, String colony, String street, String zipcode, String reference, User user) {
-		super();
 		this.state = state;
 		this.city = city;
 		this.colony = colony;

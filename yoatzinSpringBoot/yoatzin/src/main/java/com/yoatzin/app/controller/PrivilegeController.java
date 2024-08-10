@@ -19,34 +19,27 @@ public class PrivilegeController {
 	}
 	
 	@PostMapping
-	ResponseEntity<Privilege> createPrivileges(@RequestBody Privilege privilege) {
+	public ResponseEntity<Privilege> createPrivilege(@RequestBody Privilege privilege) {
 		Privilege newPrivilege = privilegeService.createPrivileges(privilege);
 		return ResponseEntity.status(201).body(newPrivilege);
 	}
 	
-	@GetMapping("{id}") // api/v1/users/10
-	ResponseEntity<Privilege> getUserById(@PathVariable("id") Long id) {
-		Privilege existingPrivileges = privilegeService.getPrivilegesById_privilege(id);
-		return ResponseEntity.ok(existingPrivileges);
+	@GetMapping("{id}") // api/v1/privileges/10
+	public ResponseEntity<Privilege> getUserById(@PathVariable("id") Long id) {
+		Privilege existingPrivilege = privilegeService.getPrivilegesById_privilege(id);
+		return ResponseEntity.ok(existingPrivilege);
 	}
 	
-	@GetMapping // api/v1/users?active=false
-	ResponseEntity<Iterable<Privilege>> getAllPrivileges(
-			@RequestParam(name = "active", required = false, defaultValue = "true") 
-			boolean active
-			) {
-		Iterable<Privilege> existingPrivileges = privilegeService.getAllPrivileges(active);
-		return ResponseEntity.ok(existingPrivileges);
-	}
+	
 	
 	@PutMapping("{id}")
-	ResponseEntity<Privilege> updatePrivileges(@RequestBody Privilege newPrivilegesData, @PathVariable("id") Long id) {
+	public ResponseEntity<Privilege> updatePrivileges(@RequestBody Privilege newPrivilegesData, @PathVariable("id") Long id) {
 		Privilege updatedPrivileges = privilegeService.updatePrivileges(newPrivilegesData, id);
 		return ResponseEntity.ok(updatedPrivileges);
 	}
 	
 	@DeleteMapping("{id}")
-	ResponseEntity<String> deletePrivileges(@PathVariable("id") Long id) {
+	public ResponseEntity<String> deletePrivileges(@PathVariable("id") Long id) {
 		privilegeService.deletePrivileges(id);
 		return ResponseEntity.status(204).body("Privilege id " + id + " successfully deleted");
 	}

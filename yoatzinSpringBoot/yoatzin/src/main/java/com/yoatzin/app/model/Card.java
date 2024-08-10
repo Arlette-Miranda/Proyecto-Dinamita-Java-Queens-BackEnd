@@ -1,10 +1,14 @@
 package com.yoatzin.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,35 +17,37 @@ import jakarta.persistence.Table;
 public class Card {
 	
 	@Id
-	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_card;
 	
-	private Long fk_id_user;
-	@Column(name="number", length=16, nullable=false)
-	private Long number;
-	@Column(name="owner_card", length=100, nullable=false)
-	private Long owner_card;
-	@Column(name="month", length=2, nullable=false)
-	private Long month;
-	@Column(name="year", length=4, nullable=false)
-	private Long year;
-	@Column(name="cvc", length=4, nullable=false)
-	private Long cvc;
-	private boolean active;
+	// Se crea lleve foranea
+		@ManyToOne
+		@JoinColumn(name = "fk_id_user")
+		@JsonIgnoreProperties({"name","lastName", "phone","email","password"})
+		private User user;
 	
-	public Card() {
-		
-	}
-
-	public Card(Long number, Long owner_card, Long month, Long year, Long cvc, boolean active) {
+	@Column(name="number", length=16, nullable=false)
+	private String number;
+	@Column(name="ownerCard", length=100, nullable=false)
+	private String ownerCard;
+	@Column(name="month", length=2, nullable=false)
+	private String month;
+	@Column(name="year", length=4, nullable=false)
+	private String year;
+	@Column(name="cvc", length=4, nullable=false)
+	private String cvc;
+	
+	public Card() {}
+	
+	//Se agrega User user por Fk en atributos
+	public Card(String number, String ownerCard, String month, String year, String cvc, User user) {
 		super();
 		this.number = number;
-		this.owner_card = owner_card;
+		this.ownerCard = ownerCard;
 		this.month = month;
 		this.year = year;
 		this.cvc = cvc;
-		this.active = active;
+		this.user = user; // Se agrega por llave foranea
 	}
 
 	public Long getId_card() {
@@ -52,62 +58,55 @@ public class Card {
 		this.id_card = id_card;
 	}
 
-	public Long getFk_id_user() {
-		return fk_id_user;
-	}
 
-	public void setFk_id_user(Long fk_id_user) {
-		this.fk_id_user = fk_id_user;
-	}
-
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
-	public Long getOwner_card() {
-		return owner_card;
+	public String getOwnerCard() {
+		return ownerCard;
 	}
 
-	public void setOwner_card(Long owner_card) {
-		this.owner_card = owner_card;
+	public void setOwnerCard(String ownerCard) {
+		this.ownerCard = ownerCard;
 	}
 
-	public Long getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Long month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 
-	public Long getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Long year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
-	public Long getCvc() {
+	public String getCvc() {
 		return cvc;
 	}
 
-	public void setCvc(Long cvc) {
+	public void setCvc(String cvc) {
 		this.cvc = cvc;
 	}
     
-	public boolean isActive() {
-		return active;
-	}
+	// Se agregan Get y Set de Fk
+		public User getUser() {
+			return user;
+		}
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	
+		public void setUser(User user) {
+			this.user = user;
+		}
 	
 	@Override
 	public String toString() {
@@ -115,19 +114,17 @@ public class Card {
 		builder.append("Card [id_card=");
 		builder.append(id_card);
 		builder.append(", fk_id_user=");
-		builder.append(fk_id_user);
+		builder.append(user);
 		builder.append(", number=");
 		builder.append(number);
-		builder.append(", owner_card=");
-		builder.append(owner_card);
+		builder.append(", ownerCard=");
+		builder.append(ownerCard);
 		builder.append(", month=");
 		builder.append(month);
 		builder.append(", year=");
 		builder.append(year);
 		builder.append(", cvc=");
 		builder.append(cvc);
-		builder.append(", active=");
-		builder.append(active);
 		builder.append("]");
 		return builder.toString();
 	}
